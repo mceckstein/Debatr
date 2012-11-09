@@ -45,6 +45,11 @@ app.delete('/api/post/:id', api.deletePost);
 app.get('*', routes.index);
 
 // Start server
-app.listen(3000, function() {
+var listeningPort = 3000;
+if (typeof(process.env.PORT) !== 'undefined') {
+    listeningPort = process.env.PORT;
+}
+
+app.listen(listeningPort, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
