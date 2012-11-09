@@ -3,29 +3,29 @@
  */
 
 var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api');
+    routes = require('./routes'),
+    api = require('./routes/api');
 
 var app = module.exports = express();
 
 // Configuration
 app.configure(function() {
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.static(__dirname + '/public'));
-  app.use(app.router);
+    app.set('port', process.env.PORT || 3000);
+    app.use(express.logger('dev'));
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'jade');
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+    app.use(function noCachePlease(req, res, next) {
+        res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.header("Pragma", "no-cache");
+        res.header("Expires", 0);
+        next();
+    });
+    app.use(express.static(__dirname + '/public'));
+    app.use(app.router);
 });
-
 app.configure('development', function() {
-  app.use(express.errorHandler({
-    dumpExceptions: true,
-    showStack: true
-  }));
-});
-
-app.configure('production', function() {
   app.use(express.errorHandler());
 });
 
@@ -45,11 +45,6 @@ app.delete('/api/post/:id', api.deletePost);
 app.get('*', routes.index);
 
 // Start server
-var listeningPort = 3000;
-if (typeof(process.env.PORT) !== 'undefined') {
-    listeningPort = process.env.PORT;
-}
-
-app.listen(listeningPort, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+app.listen(app.get('port'), function() {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
