@@ -12,10 +12,15 @@ var database = {
 exports.posts = function(req, res) {
     var posts = [];
     database.posts.forEach(function(post, i) {
+        var postText = post.text;
+        if (postText.length > 50) {
+            postText = postText.substr(0, 47) + '...';
+        }
+
         posts.push({
             id: i,
             title: post.title,
-            text: post.text.substr(0, 50) + '...'
+            text: postText
         });
     });
     res.json({
