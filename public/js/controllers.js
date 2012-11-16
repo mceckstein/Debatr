@@ -3,9 +3,9 @@
 /* Controllers */
 
 function IndexCtrl($scope, $http) {
-	$http.get('/api/posts').
+	$http.get('/api/questions').
 	success(function(data, status, headers, config) {
-		$scope.posts = data.posts;
+		$scope.questions = data.questions;
 	});
 }
 

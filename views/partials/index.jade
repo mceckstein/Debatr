@@ -1,5 +1,5 @@
-p There are {{posts.length}} posts
-div(ng-repeat='post in posts')
+p There are {{posts.length}} questions
+div(ng-repeat='question in questions')
   h3 {{post.title}}
   div {{post.text}}
   a(href='readPost/{{post.id}}') More
