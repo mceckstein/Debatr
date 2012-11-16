@@ -1,9 +1,6 @@
-p There are {{posts.length}} questions
-div(ng-repeat='question in questions')
-  h3 {{post.title}}
-  div {{post.text}}
-  a(href='readPost/{{post.id}}') More
-  |  -
-  a(href='editPost/{{post.id}}') Edit
-  |  -
-  a(href='deletePost/{{post.id}}') Delete
+p there are {{debates.length}} debates(s)
+div(ng-repeat='debate in debates')
+  h3 {{debate.title}}
+  div {{debate.text}}
+  div ({{debate.yayCount}} Yays, {{debate.nayCount}} Nays)
+  a(href='readPost/{{debate.id}}') more...

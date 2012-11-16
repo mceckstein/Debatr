@@ -10,11 +10,11 @@ angular.module('myApp', []).
     	}).
     	when('/addPost', {
     		templateUrl: 'partials/addPost',
-    		controller: AddPostCtrl
+    		controller: AddDebateCtrl
     	}).
     	when('/readPost/:id', {
     		templateUrl: 'partials/readPost',
-    		controller: ReadPostCtrl
+    		controller: ReadDebateCtrl
     	}).
     	when('/editPost/:id', {
     		templateUrl: 'partials/editPost',

@@ -1,2 +1,19 @@
-h3 {{post.title}}
-div {{post.text}}
+h3 {{debate.title}}
+div {{debate.text}}
+h4 yay
+div(ng-repeat='yay in yays')
+  div {{yay.user}} - {{yay.text}}
+  div(style='height:20px;') &nbsp;
+h4 nay
+div(ng-repeat='nay in nays')
+  div {{nay.user}} - {{nay.text}}
+  div(style='height:20px;') &nbsp;
+h4 add a new yay or nay
+label(for='username') username:
+input(ng-model='form.username', name='username')
+input(ng-model='form.id', type='hidden')
+p text:
+textarea(ng-model='form.text', cols='50', rows='15')
+p
+  button(ng-click='addYayResponse()') add yay
+  button(ng-click='addNayResponse()') add nay
